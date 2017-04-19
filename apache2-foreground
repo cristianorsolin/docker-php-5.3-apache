@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+# Apache gets grumpy about PID files pre-existing
+rm -f /var/run/apache2/apache2.pid
+
+# sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
+a2enmod rewrite
+
+exec apache2 -DFOREGROUND
